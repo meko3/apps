@@ -1,0 +1,5 @@
+@import "../../styles.scss";
+
+:host {
+  background-color: lighten(map-get($palette, primary), 30);
+}
