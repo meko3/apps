@@ -1,8 +1,8 @@
-import { storiesOf, moduleMetadata } from "@storybook/angular";
+// import { storiesOf, moduleMetadata } from "@storybook/angular";
 
-import { MainComponent } from "./component";
+// import { MainComponent } from "./component";
 
-storiesOf("Sample", module).add("usecase", () => ({
-  component: MainComponent,
-  props: {}
-}));
+// storiesOf("Sample", module).add("usecase", () => ({
+//   component: MainComponent,
+//   props: {}
+// }));
