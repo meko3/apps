@@ -15,9 +15,22 @@
 <div class="container">
   <div>価値観一覧</div>
   <div class="my-list">
-    <div *ngFor="let v of myValues;let i = index;">
-      <div class="content" *ngIf="v===2">
-        <div>{{ values[i][0] }}</div><div>{{ values[i][1] }}</div>
+    <div *ngFor="let v of myValues;let i = index;" dndZone>
+      <div dndPlaceholderRef class="dndPlaceholder"></div>
+      <div class="content" *ngIf="v!! && v.data===2" [dndDraggable]="v.data" dndDropzone (dndDrop)="onDrop($event, item.children)">
+        <mat-card dndPlaceholderRef class="dndPlaceholder"></mat-card>
+        <mat-card
+          class="info"
+          [dndDraggable]="v"
+          dndEffectAllowed="v.effectAllowed"
+          (dndStart)="onDragStart($event)"
+          (dndCopied)="onDragged(item, list, 'copy')"
+          (dndMoved)="onDragged(item, list, 'move')"
+          (dndCanceled)="onDragged(item, list, 'none')"
+          (dndEnd)="onDragEnd($event)"
+        >
+          <div>{{ i + 1 + ": " }}</div><div>{{ values[i][0] }}</div><div>{{ values[i][1] }}</div>
+        </mat-card>
       </div>
     </div>
   </div>

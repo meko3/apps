@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 
+import { DndDropEvent, DropEffect } from "ngx-drag-drop";
+import { MatSnackBar } from "@angular/material/snack-bar";
+
 @Component({
   selector: "app-reflection",
   templateUrl: "./reflection.component.html",
@@ -90,15 +93,62 @@ export class ReflectionComponent implements OnInit {
     [ "伝統", "過去から受け継がれてきたパターンを尊重する" ],
   ];
 
-  public myValues: number[] = Array(80);
+  public myValues: any[];
 
   constructor() { }
 
   ngOnInit() {
+    this.myValues = [];
   }
 
   public setValue(value, index) {
-    this.myValues[index] = value;
+    this.myValues.push({
+      tag: index,
+      index: this.myValues.length,
+      data: value,
+      effectAllowed: "move",
+      disable: false,
+      handle: false,
+      children: {},
+    });
+  }
+
+  private currentDraggableEvent:DragEvent;
+
+  onDragStart( event:DragEvent ) {
+
+    this.currentDraggableEvent = event;
+  }
+
+  onDragged( item:any, list:any[], effect:DropEffect ) {
+
+    if( effect === "move" ) {
+
+      const index = list.indexOf( item );
+      list.splice( index, 1 );
+    }
+  }
+
+  onDragEnd( event:DragEvent ) {
+
+    this.currentDraggableEvent = event;
+  }
+
+  onDrop( event:DndDropEvent, list?:any[] ) {
+
+    if( list
+      && (event.dropEffect === "copy"
+        || event.dropEffect === "move") ) {
+
+      let index = event.index;
+
+      if( typeof index === "undefined" ) {
+
+        index = list.length;
+      }
+
+      list.splice( index, 0, event.data );
+    }
   }
 
 }
