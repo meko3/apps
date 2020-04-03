@@ -113,6 +113,10 @@ export class ReflectionComponent implements OnInit {
     });
   }
 
+  public get restValues() {
+    return this.values.length - this.myValues.length;
+  }
+
   private currentDraggableEvent:DragEvent;
 
   onDragStart( event:DragEvent ) {
