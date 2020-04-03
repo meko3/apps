@@ -1,6 +1,7 @@
 .container {
   padding: 10px;
   border: gray 1px solid;
+  margin-bottom: 10px;
 }
 .list {
   display: grid;
@@ -72,5 +73,9 @@ button:active {
     display: grid;
     grid-template-columns: 50px 50px 1fr;
   }
+}
+
+.last-container {
+  margin-bottom: 50px;
 }
 

@@ -102,7 +102,7 @@ export class ReflectionComponent implements OnInit {
   }
 
   public setValue(value, index) {
-    this.myValues.push({
+    this.myValues[index] = {
       tag: index,
       index: this.myValues.length,
       data: value,
@@ -110,7 +110,7 @@ export class ReflectionComponent implements OnInit {
       disable: false,
       handle: false,
       children: {},
-    });
+    };
   }
 
   public get restValues() {

@@ -7,16 +7,16 @@
     </div>
     <div class="select-info"><div>←当てはまる</div><div>当てはまらない→</div></div>
     <div class="select">
-      <div><input id="sel2-{{i}}" (click)="setValue(2, i)" type="radio"><label for="sel2-{{i}}">☆</label></div>
-      <div><input id="sel1-{{i}}" (click)="setValue(1, i)" type="radio"><label for="sel1-{{i}}">◯</label></div>
-      <div><input id="sel0-{{i}}" (click)="setValue(0, i)" type="radio"><label for="sel0-{{i}}">×</label></div>
+      <div><input id="sel2-{{i}}" (click)="setValue(2, i)" type="radio" name="group-{{i}}"><label for="sel2-{{i}}">☆</label></div>
+      <div><input id="sel1-{{i}}" (click)="setValue(1, i)" type="radio" name="group-{{i}}"><label for="sel1-{{i}}">◯</label></div>
+      <div><input id="sel0-{{i}}" (click)="setValue(0, i)" type="radio" name="group-{{i}}"><label for="sel0-{{i}}">×</label></div>
     </div>
   </div>
 </div>
 <div id="snapbar">
   残りの質問　{{ restValues }}個
 </div>
-<div class="container">
+<div class="container last-container">
   <div>価値観一覧</div>
   <div class="my-list">
     <div *ngFor="let v of myValues;let i = index;" dndZone>
