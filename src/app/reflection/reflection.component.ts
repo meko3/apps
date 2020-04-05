@@ -110,11 +110,16 @@ export class ReflectionComponent implements OnInit {
       disable: false,
       handle: false,
       children: {},
+      point: value===2 ? 100 : 0,
     };
   }
 
   public get restValues() {
     return this.values.length - this.myValues.length;
+  }
+
+  public checkRank() {
+
   }
 
   private currentDraggableEvent:DragEvent;
