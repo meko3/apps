@@ -46,7 +46,7 @@
 <div class="container">
   <div>大切な方を選んでください</div>
   <button (click)="initRank()">並べ替える</button>
-  <div id="select-2" *ngIf="rankflag && this.checkCombinationFlag()">
+  <div id="select-2" *ngIf="rankflag">
     <div class="left card" (click)="checkRank(0)">
       <div>{{ this.values[this.leftValue][0] }}</div>
       <div>{{ this.values[this.leftValue][1] }}</div>
