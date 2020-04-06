@@ -76,24 +76,26 @@ button:active {
 }
 
 #select-2 {
-  width: 320px;
+  width: 400px;
   height: 120px;
   display: flex;
   padding: 10px;
-  div {
-    width: 150px;
+  justify-content: center;
+  .card {
+    width: 320px;
+    padding: 10px;
   }
-  div:nth-of-type(1) {
+  .card:nth-of-type(1) {
     background-color: aqua;
   }
-  div:nth-of-type(1):hover {
+  .card:nth-of-type(1):hover {
     background-color: blue;
   }
-  div:nth-of-type(2) {
+  .card:nth-of-type(2) {
     margin-left: 20px;
     background-color: #cef;
   }
-  div:nth-of-type(2):hover {
+  .card:nth-of-type(2):hover {
     background-color: #0ef;
   }
 }
