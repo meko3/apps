@@ -1,7 +1,7 @@
 <div class="container">
-  <div>価値観リスト</div>
+  <div>価値観リスト</div><button (click)="startTimer()">StartTimer</button>
   <div>☆：これは絶対に必要、◯：まあ大切、×：必要ない</div>
-  <div *ngFor="let v of values;let i = index;">
+  <div *ngFor="let v of values;let i = index;" id="q-{{i}}">
     <div class="list">
       <div class="num">{{i + 1}}</div><div>{{ v[0] }}</div><div>{{ v[1] }}</div>
     </div>
@@ -14,7 +14,10 @@
   </div>
 </div>
 <div id="snapbar">
-  残りの質問　{{ restValues }}個
+  <div>残りの質問　{{ restValues }}個</div>
+  <div>経過時間: {{ this.timer }}</div>
+  <button (click)="pauseTimer()">pause</button>
+  <button (click)="startTimer()">start</button>
 </div>
 <div class="container">
   <div>価値観一覧</div>
@@ -39,6 +42,7 @@
     </div>
   </div>
 </div>
+{{ this.missedTag }}
 <div class="container">
   <div>大切な方を選んでください</div>
   <button (click)="initRank()">並べ替える</button>
@@ -52,6 +56,7 @@
       <div>{{ this.values[this.rightValue][1] }}</div>
     </div>
   </div>
+  <div class="rest">残り:{{ this.combination.length - this.combinationFlag }}個</div>
   <div *ngIf="this.checkCombinationFlag()">
     <div></div>
   </div>
@@ -61,7 +66,7 @@
   <button (click)="sortValues()">結果を見る</button>
   <div class="my-list">
     <div *ngFor="let r of rankedValues;let i = index;">
-      <div class="content">
+      <div class="content" *ngIf="this.myValuePoints[r[0]] !== 0 && i < 10">
         <div class="info">
           <div>{{ i + 1 + ": " }}</div>
           <!-- <div>{{ r[1] }}</div> -->

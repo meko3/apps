@@ -95,11 +95,14 @@ export class ReflectionComponent implements OnInit {
 
   public myValues: any[] = [];
   public myValuePoints: number[] = [];
+  public missedTag;
 
   constructor() { }
 
   ngOnInit() {
     this.myValues = [];
+    this.time = 0;
+    this.play = false;
   }
 
   public setValue(value, index) {
@@ -119,6 +122,18 @@ export class ReflectionComponent implements OnInit {
     return this.values.length - this.myValues.length;
   }
 
+  public checkAll() {
+    var checkFlag = true;
+    this.myValues.forEach((value, index) => {
+      if (!value.data) {
+        checkFlag = false;
+        this.missedTag = index;
+        return ;
+      }
+    });
+    return checkFlag;
+  }
+
   public point = 100;
   public rankflag = false;
   public leftValue;
@@ -128,18 +143,20 @@ export class ReflectionComponent implements OnInit {
   public rankedValues: any[] = [];
 
   public initRank() {
-    this.leftValue = this.myValues[0];
-    this.rightValue = this.myValues[1];
-    this.myValues.forEach((i) => {
-      this.myValues.forEach((j) => {
-        if (i.point * j.point !== 0 && i.tag !== j.tag) {
-          this.combination.push([i.tag, j.tag]);
-        }
+    if (this.checkAll()) {
+      this.leftValue = this.myValues[0];
+      this.rightValue = this.myValues[1];
+      this.myValues.forEach((i) => {
+        this.myValues.forEach((j) => {
+          if (i.point * j.point !== 0 && i.tag !== j.tag) {
+            this.combination.push([i.tag, j.tag]);
+          }
+        });
       });
-    });
-    this.initPoints();
-    this.setCombination(0);
-    this.rankflag = true;
+      this.initPoints();
+      this.setCombination(0);
+      this.rankflag = true;
+    }
   }
 
   public initPoints() {
@@ -184,42 +201,23 @@ export class ReflectionComponent implements OnInit {
     });
   }
 
-  // private currentDraggableEvent:DragEvent;
+  private time;
+  private play;
+  private interval;
 
-  // onDragStart( event:DragEvent ) {
+  get timer() {
+    return Math.floor(this.time / 60) + ":" + this.time % 60;
+  }
 
-  //   this.currentDraggableEvent = event;
-  // }
+  public startTimer() {
+    this.play = true;
+    this.interval = setInterval(() => {
+      this.time++;
+    }, 1000);
+  }
 
-  // onDragged( item:any, list:any[], effect:DropEffect ) {
-
-  //   if( effect === "move" ) {
-
-  //     const index = list.indexOf( item );
-  //     list.splice( index, 1 );
-  //   }
-  // }
-
-  // onDragEnd( event:DragEvent ) {
-
-  //   this.currentDraggableEvent = event;
-  // }
-
-  // onDrop( event:DndDropEvent, list?:any[] ) {
-
-  //   if( list
-  //     && (event.dropEffect === "copy"
-  //       || event.dropEffect === "move") ) {
-
-  //     let index = event.index;
-
-  //     if( typeof index === "undefined" ) {
-
-  //       index = list.length;
-  //     }
-
-  //     list.splice( index, 0, event.data );
-  //   }
-  // }
-
+  public pauseTimer() {
+    this.play = false;
+    clearInterval(this.interval);
+  }
 }

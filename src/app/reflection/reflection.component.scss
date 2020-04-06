@@ -13,9 +13,10 @@
 }
 .select-info {
   width: 274px;
-  margin-left: 20px;
+  margin-left: 35px;
   display: flex;
-  font-size: 14px;
+  font-size: 12px;
+  color: gray;
   div {
     width: 50%;
   }
@@ -27,11 +28,10 @@
   }
 }
 .select {
-  width: 240px;
+  width: 300px;
   padding: 5px 0px 5px 60px;
   display: grid;
-  grid-template-columns: 60px 60px 60px;
-  grid-gap: 3px;
+  grid-template-columns: 70px 70px 70px;
   input[type="radio"] {
     display: none;
   }
@@ -40,8 +40,10 @@
     justify-content: center;
     padding: 5px;
     background-color: #cef;
-    width: 100%;
+    width: 50px;
     height: 100%;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px gray;
     cursor: pointer;
   }
   label:hover {
@@ -50,6 +52,8 @@
   input[type="radio"]:checked + label {
     background-color:#000;
     color: white;
+    box-shadow: 1px 1px 1px gray;
+    transform: translateY(2px);
   }
 }
 button:active {
@@ -65,6 +69,19 @@ button:active {
   padding: 10px;
   display: flex;
   justify-content: center;
+  div {
+    display: flex;
+    justify-content: center;
+  }
+  div:nth-of-type(1) {
+    width: 40%;
+  }
+  div:nth-of-type(2) {
+    width: 30%;
+  }
+  div:nth-of-type(3) {
+    width: 30%;
+  }
 }
 
 .my-list {
@@ -98,6 +115,12 @@ button:active {
   .card:nth-of-type(2):hover {
     background-color: #0ef;
   }
+}
+
+.rest {
+  width: 400px;
+  display: flex;
+  justify-content: center;
 }
 
 .last-container {
