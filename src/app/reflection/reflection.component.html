@@ -42,11 +42,11 @@
     </div>
   </div>
 </div>
-{{ this.missedTag }}
 <div class="container">
   <div>大切な方を選んでください</div>
-  <button (click)="initRank()">並べ替える</button>
-  <div id="select-2" *ngIf="rankflag">
+  <button (click)="initRank()" *ngIf="!this.checkCombinationFlag()">並べ替える</button>
+  <div *ngIf="!this.checkAll()"><font color="red">選んでない項目があります</font></div>
+  <div id="select-2" *ngIf="this.checkAll() && rankflag && this.checkCombinationFlag()">
     <div class="left card" (click)="checkRank(0)">
       <div>{{ this.values[this.leftValue][0] }}</div>
       <div>{{ this.values[this.leftValue][1] }}</div>

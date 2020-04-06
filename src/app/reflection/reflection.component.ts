@@ -143,12 +143,13 @@ export class ReflectionComponent implements OnInit {
   public rankedValues: any[] = [];
 
   public initRank() {
+    this.combination = [];
     if (this.checkAll()) {
       this.leftValue = this.myValues[0];
       this.rightValue = this.myValues[1];
       this.myValues.forEach((i) => {
         this.myValues.forEach((j) => {
-          if (i.point * j.point !== 0 && i.tag !== j.tag) {
+          if (i.point * j.point !== 0 && i.tag < j.tag) {
             this.combination.push([i.tag, j.tag]);
           }
         });
@@ -186,7 +187,7 @@ export class ReflectionComponent implements OnInit {
   }
 
   public checkCombinationFlag() {
-    return this.combination.length && this.combination.length - this.combinationFlag;
+    return this.combination.length > 1 && !!(this.combination.length > this.combinationFlag);
   }
 
   public checker = 0;
